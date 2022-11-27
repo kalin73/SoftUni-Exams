@@ -12,33 +12,13 @@ public class DestinationMapper {
 		List<String> destinations = new ArrayList<>();
 
 		for (int i = 0; i < input.length() - 1; i++) {
-			if (input.charAt(i) == '=' && Character.isUpperCase(input.charAt(i + 1))) {
+			char currChar = input.charAt(i);
 
-				for (int k = i + 1; k < input.length(); k++) {
-					if (input.charAt(k) == '=' && k - i >= 4) {
-						destinations.add(input.substring(i + 1, k));
-						break;
+			if (currChar == '=' && Character.isUpperCase(input.charAt(i + 1))) {
+				i = filter(input, i, currChar, destinations);
 
-					} else if (!Character.isLetter(input.charAt(k))) {
-						i = k - 1;
-						break;
-					}
-				}
-
-			} else if (input.charAt(i) == '/' && Character.isUpperCase(input.charAt(i + 1))) {
-
-				for (int k = i + 1; k < input.length(); k++) {
-
-					if (input.charAt(k) == '/' && k - i >= 4) {
-						destinations.add(input.substring(i + 1, k));
-						break;
-
-					} else if (!Character.isLetter(input.charAt(k))) {
-						i = k - 1;
-						break;
-					}
-
-				}
+			} else if (currChar == '/') {
+				i = filter(input, i, currChar, destinations);
 
 			}
 		}
@@ -51,5 +31,23 @@ public class DestinationMapper {
 
 		System.out.println("Travel Points: " + sum);
 		sc.close();
+	}
+
+	private static int filter(String input, int i, char currChar, List<String> destinations) {
+
+		if (Character.isUpperCase(input.charAt(i + 1))) {
+
+			for (int k = i + 1; k < input.length(); k++) {
+				if (input.charAt(k) == currChar && k - i >= 4) {
+					destinations.add(input.substring(i + 1, k));
+					return k - 1;
+
+				} else if (!Character.isLetter(input.charAt(k))) {
+					return k - 1;
+
+				}
+			}
+		}
+		return i;
 	}
 }
