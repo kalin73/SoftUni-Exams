@@ -57,8 +57,7 @@ public class Aluminum_Joinery {
 			break;
 		}
 
-		double totalPrice = number * price;
-		totalPrice = totalPrice - (totalPrice * discount);
+		double totalPrice = number * (price - (price * discount));
 
 		if (delivery) {
 			totalPrice += 60;
@@ -68,7 +67,6 @@ public class Aluminum_Joinery {
 		}
 
 		System.out.printf("%.2f BGN", totalPrice);
-
 		sc.close();
 
 	}
