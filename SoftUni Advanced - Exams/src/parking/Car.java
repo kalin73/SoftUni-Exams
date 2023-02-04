@@ -37,7 +37,6 @@ public class Car {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return String.format("%s %s (%d)", this.manufacturer, this.model, this.year);
 	}
 
