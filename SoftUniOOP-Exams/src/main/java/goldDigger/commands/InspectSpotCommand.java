@@ -25,7 +25,9 @@ public class InspectSpotCommand implements Command {
 
 	@Override
 	public String execute() {
-		List<Discoverer> suitableDiscoverers = discoverersRepo.getCollection().stream().filter(x -> x.getEnergy() > 45)
+		List<Discoverer> suitableDiscoverers = discoverersRepo.getCollection()
+				.stream()
+				.filter(x -> x.getEnergy() > 45)
 				.collect(Collectors.toList());
 		Operation operation = new OperationImpl();
 
@@ -35,7 +37,10 @@ public class InspectSpotCommand implements Command {
 
 		Spot spot = spotsRepo.byName(spotName);
 		operation.startOperation(spot, suitableDiscoverers);
-		long excluded = suitableDiscoverers.stream().filter(x -> x.getEnergy() == 0).count();
+		long excluded = suitableDiscoverers
+				.stream()
+				.filter(x -> x.getEnergy() == 0)
+				.count();
 		inspections++;
 
 		return String.format(ConstantMessages.INSPECT_SPOT, spotName, excluded);

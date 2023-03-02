@@ -1,10 +1,10 @@
 package goldDigger.models.discoverer;
 
-public class Archaeologist extends BaseDiscoverer{
-	private static double initialEnergy = 60;
+public class Archaeologist extends BaseDiscoverer {
+	private static final double INITIAL_ENERGY = 60;
 
 	public Archaeologist(String name) {
-		super(name, initialEnergy);
+		super(name, INITIAL_ENERGY);
 	}
 
 }

@@ -19,7 +19,9 @@ public class GetStatisticsCommand implements Command {
 	@Override
 	public String execute() {
 		int inspections = InspectSpotCommand.inspections;
-		result.append(inspections + " spots were inspected.");
+		String exhibits = "";
+
+		result.append(String.format(ConstantMessages.FINAL_SPOT_INSPECT, inspections));
 		result.append(System.lineSeparator());
 		result.append(ConstantMessages.FINAL_DISCOVERER_INFO);
 		result.append(System.lineSeparator());
@@ -29,17 +31,18 @@ public class GetStatisticsCommand implements Command {
 			result.append(System.lineSeparator());
 			result.append(String.format(ConstantMessages.FINAL_DISCOVERER_ENERGY, discoverer.getEnergy()));
 			result.append(System.lineSeparator());
-			result.append("Museum exhibits: ");
+
 			if (discoverer.getMuseum().getExhibits().isEmpty()) {
-				result.append("None");
-				result.append(System.lineSeparator());
+				exhibits = "None";
 
 			} else {
-				String exhibits = discoverer.getMuseum().getExhibits().stream().collect(Collectors.joining(", "));
-				result.append(exhibits);
-				result.append(System.lineSeparator());
+				exhibits = discoverer.getMuseum()
+						.getExhibits()
+						.stream()
+						.collect(Collectors.joining(ConstantMessages.FINAL_DISCOVERER_MUSEUM_EXHIBITS_DELIMITER));
 			}
-
+			result.append(String.format(ConstantMessages.FINAL_DISCOVERER_MUSEUM_EXHIBITS, exhibits));
+			result.append(System.lineSeparator());
 		}
 
 		return result.toString();

@@ -41,14 +41,14 @@ public abstract class BaseDiscoverer implements Discoverer {
 		return this.museum;
 	}
 
-	private void setName(String name) {
+	public void setName(String name) {
 		if (name == null || name.trim().isEmpty()) {
 			throw new NullPointerException(ExceptionMessages.DISCOVERER_NAME_NULL_OR_EMPTY);
 		}
 		this.name = name;
 	}
 
-	private void setEnergy(double energy) {
+	public void setEnergy(double energy) {
 		if (energy < 0) {
 			throw new IllegalArgumentException(ExceptionMessages.DISCOVERER_ENERGY_LESS_THAN_ZERO);
 		}

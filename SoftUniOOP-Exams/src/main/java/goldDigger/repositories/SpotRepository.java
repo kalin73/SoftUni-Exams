@@ -21,7 +21,9 @@ public class SpotRepository implements Repository<Spot> {
 
 	@Override
 	public void add(Spot spot) {
-		spots.put(spot.getName(), spot);
+		if (!spots.containsKey(spot.getName())) {
+			spots.put(spot.getName(), spot);
+		}
 	}
 
 	@Override
