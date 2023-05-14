@@ -45,7 +45,7 @@ public class GetStatisticsCommand implements Command {
 			result.append(System.lineSeparator());
 		}
 
-		return result.toString();
+		return result.toString().trim();
 	}
 
 }
