@@ -39,7 +39,7 @@ public class InspectSpotCommand implements Command {
 		operation.startOperation(spot, suitableDiscoverers);
 		long excluded = suitableDiscoverers
 				.stream()
-				.filter(x -> x.getEnergy() == 0)
+				.filter(x -> x.getEnergy() <= 0)
 				.count();
 		inspections++;
 
